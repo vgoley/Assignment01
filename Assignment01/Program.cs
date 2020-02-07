@@ -13,6 +13,7 @@ namespace Assignment01
         static void Main(string[] args)
         {
             int n1 = 5;
+            Console.WriteLine("Question1:");
             for (int i = n1; i >= 1; i--)
             {
                 PrintPattern(i);
@@ -33,7 +34,7 @@ namespace Assignment01
             string[] words = new string[] { "abcd", "dcba", "lls", "s", "sssll" };
             PalindromePairs(words);
 
-            int n4 = 10;
+            int n4 = 8;
             Stones(n4);
         }
         //Question 1
@@ -53,11 +54,11 @@ namespace Assignment01
             }
         }
         //Question 2
-        private static void PrintSeries(int n2)
+        private static void PrintSeries(int n2) 
         {
             try
             {
-                Console.WriteLine("\n");
+                Console.WriteLine("\nQuestion2:");
                 int s = 0;
                 for (int j1=1;j1<=n2;j1++)
                 {                 
@@ -75,11 +76,16 @@ namespace Assignment01
         {
             try
             {
-                // DateTime T = Convert.ToDateTime(s);
-                // DateTime T = new DateTime();
-                //T = DateTime.ParseExact(s, "yyyy-MM-dd HH:mm tt",null);
-                //Console.Write(T);
-                //return " ";
+                Console.WriteLine("\nQuestion3:");
+                DateTime.TryParse(s, out DateTime dt);
+                Console.WriteLine("Input Date and Time is: " + dt);
+                int Sec = ((dt.Hour * 60 * 60) + (dt.Minute * 60) + dt.Second);
+                Console.WriteLine("Total Seconds = " + Sec);
+                int USFhr = Sec / (60*45);
+                int rem = Sec % (60 * 45);
+                int USFmin = rem / 45;
+                int USFsec = rem % 45;
+                return(USFhr + ":" + USFmin + ":" + USFsec); 
             }
             catch
             {
@@ -92,6 +98,7 @@ namespace Assignment01
         {
             try
             {
+                Console.WriteLine("\nQuestion4:");
                 for (int i = 1; i <= n3; i++)
                 {
                     if (i % 15 == 0)
@@ -123,7 +130,7 @@ namespace Assignment01
         {
             try
             {
-                Console.Write("\n");
+                Console.WriteLine("\nQuestion5:");
                 for (int i = 0; i < words.Length; i++ )
                 {
                     for (int j = 0; j < words.Length; j++)
@@ -138,7 +145,7 @@ namespace Assignment01
                                 if (temp[k] != temp[temp.Length - k - 1])
                                 {
                                     palin = 0;
-                                    break;
+                                    break; 
                                 }
                             }
                             if (palin == 1)
@@ -162,9 +169,10 @@ namespace Assignment01
         {
             try
             {
+                Console.WriteLine("\n\nQuestion6:");
                 if (n4 % 4 == 0)
                 {
-                    Console.Write("\n\nFalse\n");
+                    Console.WriteLine("False\n");
                 }
                 else
                 {
@@ -172,13 +180,13 @@ namespace Assignment01
                     moves[0] = 1;
                     n4 -= 1;
                     int i;
-                    for (i = 1; n4 > 3; i++)
+                    for (i = 1; n4 > 3; i++) 
                     {
                             moves[i] = 3;
                             n4 -= 3;
                     }
                     moves[i] = n4;
-                    Console.Write("\n\n[" + moves[0]);
+                    Console.Write("[" + moves[0]);
                     for (int j = 1; j <= i; j++)
                     {
                         Console.Write("," + moves[j]);
