@@ -54,7 +54,6 @@ namespace Assignment01
             }
         }
         //Question 2
-        //
         private static void PrintSeries(int n2) 
         {
             try
@@ -66,7 +65,7 @@ namespace Assignment01
                   //Adds each element in the previous sum to calculate next element of the series.
                     s = s + j1;
                     Console.Write(s);
-                    if (j1 != n2) //To  print comma after al ements except the last one.
+                    if (j1 != n2) //To  print comma after all elements except the last one.
                         Console.Write(',');
                 }
             }
@@ -81,14 +80,14 @@ namespace Assignment01
             try
             {
                 Console.WriteLine("\n\n");
-                DateTime.TryParse(s, out DateTime dt);
+                DateTime.TryParse(s, out DateTime dt); //Convert input string to DateTime.
                 //Calculate total seconds corresponding to the input time.
                 int Sec = ((dt.Hour * 60 * 60) + (dt.Minute * 60) + dt.Second);
-                int USFhr = Sec / (60*45); //Calculating Hours in USF time.
+                int USF_U = Sec / (60*45); //Calculating U in USF time.
                 int rem = Sec % (60 * 45); 
-                int USFmin = rem / 45;     //Calculating minutes in USF time.
-                int USFsec = rem % 45;     //Calculating seconds in USF time.
-                return(USFhr + ":" + USFmin + ":" + USFsec); 
+                int USF_S = rem / 45;     //Calculating S in USF time.
+                int USF_F = rem % 45;     //Calculating F in USF time.
+                return(USF_U + ":" + USF_S + ":" + USF_F); 
             }
             catch
             {
@@ -119,7 +118,7 @@ namespace Assignment01
                     else
                         Console.Write(i + " ");
 
-                    if (i % 11 == 0) //To check if 11 numbers have been printed in a line.
+                    if (i % 11 == 0) //Check if 11 numbers are printed in a line,go to next line.
                         Console.Write('\n');
                 }              
             }
@@ -190,7 +189,7 @@ namespace Assignment01
                     if(n4 > 0)
                     { 
                         for (i = 1; n4 > 3; i++)
-                        {   //Eah person will pick three stones 
+                        {   //Each person will pick three stones 
                             moves[i] = 3;
                             n4 -= 3;
                         }
