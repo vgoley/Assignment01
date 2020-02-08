@@ -8,12 +8,10 @@ namespace Assignment01
 {
     class Program
     {
-        public static DateTime MyDateTime { get; private set; }
-
         static void Main(string[] args)
         {
             int n1 = 5;
-            Console.WriteLine("Question1:");
+            //Each iteration prints one row in the pattern.
             for (int i = n1; i >= 1; i--)
             {
                 PrintPattern(i);
@@ -34,7 +32,7 @@ namespace Assignment01
             string[] words = new string[] { "abcd", "dcba", "lls", "s", "sssll" };
             PalindromePairs(words);
 
-            int n4 = 8;
+            int n4 = 5;
             Stones(n4);
         }
         //Question 1
@@ -43,9 +41,11 @@ namespace Assignment01
             try
             {
                 if (n > 0)
+               //When n=0, control goes out to the main and execute next iteration.
                 {
                     Console.Write(n);
                     PrintPattern(n - 1);
+                //Recursively called the function to print each element in a row.
                 }
             }
             catch
@@ -54,16 +54,20 @@ namespace Assignment01
             }
         }
         //Question 2
+        //
         private static void PrintSeries(int n2) 
         {
             try
             {
-                Console.WriteLine("\nQuestion2:");
+                Console.WriteLine("\n");
                 int s = 0;
-                for (int j1=1;j1<=n2;j1++)
-                {                 
+                for (int j1 = 1; j1 <= n2; j1++)
+                {
+                  //Adds each element in the previous sum to calculate next element of the series.
                     s = s + j1;
-                    Console.WriteLine(s);
+                    Console.Write(s);
+                    if (j1 != n2) //To  print comma after al ements except the last one.
+                        Console.Write(',');
                 }
             }
             catch
@@ -76,15 +80,14 @@ namespace Assignment01
         {
             try
             {
-                Console.WriteLine("\nQuestion3:");
+                Console.WriteLine("\n\n");
                 DateTime.TryParse(s, out DateTime dt);
-                Console.WriteLine("Input Date and Time is: " + dt);
+                //Calculate total seconds corresponding to the input time.
                 int Sec = ((dt.Hour * 60 * 60) + (dt.Minute * 60) + dt.Second);
-                Console.WriteLine("Total Seconds = " + Sec);
-                int USFhr = Sec / (60*45);
-                int rem = Sec % (60 * 45);
-                int USFmin = rem / 45;
-                int USFsec = rem % 45;
+                int USFhr = Sec / (60*45); //Calculating Hours in USF time.
+                int rem = Sec % (60 * 45); 
+                int USFmin = rem / 45;     //Calculating minutes in USF time.
+                int USFsec = rem % 45;     //Calculating seconds in USF time.
                 return(USFhr + ":" + USFmin + ":" + USFsec); 
             }
             catch
@@ -98,25 +101,25 @@ namespace Assignment01
         {
             try
             {
-                Console.WriteLine("\nQuestion4:");
+                Console.WriteLine("\n");
                 for (int i = 1; i <= n3; i++)
                 {
-                    if (i % 15 == 0)
+                    if (i % 15 == 0) //For checking numbers multiple of both 3 and 5
                         Console.Write("US ");
-                    else if (i % 35 == 0)
+                    else if (i % 35 == 0) //For checking numbers multiple of both 5 and 7
                         Console.Write("SF ");
-                    else if (i % 21 == 0)
+                    else if (i % 21 == 0) //For checking numbers multiple of both 3 and 7
                         Console.Write("UF ");
-                    else if (i % 3 == 0)
+                    else if (i % 3 == 0)  //For checking numbers multiple of only 3
                         Console.Write("U ");
-                    else if (i % 5 == 0)
+                    else if (i % 5 == 0)  //For checking numbers multiple of only 5
                         Console.Write("S ");
-                    else if (i % 7 == 0)
+                    else if (i % 7 == 0)  //For checking numbers multiple of only 7
                         Console.Write("F ");
                     else
                         Console.Write(i + " ");
 
-                    if (i % 11 == 0)
+                    if (i % 11 == 0) //To check if 11 numbers have been printed in a line.
                         Console.Write('\n');
                 }              
             }
@@ -130,25 +133,26 @@ namespace Assignment01
         {
             try
             {
-                Console.WriteLine("\nQuestion5:");
+                Console.WriteLine("\n");
                 for (int i = 0; i < words.Length; i++ )
-                {
+                {   //Using two loops to concatenate a word with every other word.
                     for (int j = 0; j < words.Length; j++)
                     {
-                        if (i != j)
+                        if (i != j) //Check so that any word is not concatenated with itself.
                         {
                             string temp = " ";
                             temp = words[i] + words[j];
                             int palin = 1;
-                            for (int k = 0; k <= temp.Length / 2; k++)
+                            for (int k = 0; k <= temp.Length / 2; k++) 
                             {
                                 if (temp[k] != temp[temp.Length - k - 1])
+                                //Comparing letters at same position, one from the beginning and other from end.
                                 {
-                                    palin = 0;
-                                    break; 
+                                    palin = 0; 
+                                    break; //When mismatch is found, go out of the loop.
                                 }
                             }
-                            if (palin == 1)
+                            if (palin == 1) //Means no mismatch found, its a palindrome.
                             {
                                 Console.Write("[" + i + "," + j + "]");
                             }
@@ -169,29 +173,33 @@ namespace Assignment01
         {
             try
             {
-                Console.WriteLine("\n\nQuestion6:");
+                Console.WriteLine("\n\n");
+                //If the stones are mutiple of 4, first person would never win.
                 if (n4 % 4 == 0)
                 {
                     Console.WriteLine("False\n");
                 }
                 else
                 {
-                    int[] moves = new int[100];
-                    moves[0] = 1;
-                    n4 -= 1;
+                    int[] moves = new int[100]; //array to store the moves of each player.
+                    int firstchance = (n4 % 4); //player is smart so will pick such that multiple of 4 is left.
+                    moves[0] = firstchance;
+                    Console.Write("[" + moves[0]);
+                    n4 -= firstchance; //Remaining stones.
                     int i;
-                    for (i = 1; n4 > 3; i++) 
-                    {
+                    if(n4 > 0)
+                    { 
+                        for (i = 1; n4 > 3; i++)
+                        {   //Eah person will pick three stones 
                             moves[i] = 3;
                             n4 -= 3;
+                        }
+                        moves[i] = n4;  
+                        for (int k = 1; k <= i; k++)
+                        {   //Print the moves of each player.
+                            Console.Write("," + moves[k]);
+                        }
                     }
-                    moves[i] = n4;
-                    Console.Write("[" + moves[0]);
-                    for (int j = 1; j <= i; j++)
-                    {
-                        Console.Write("," + moves[j]);
-                    }
-
                     Console.Write("]\n");
                 }
             }
@@ -200,7 +208,5 @@ namespace Assignment01
                 Console.WriteLine("Exception occured while computing Stones()");
             }
         }
-
-
     }
 }
