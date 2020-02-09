@@ -133,6 +133,7 @@ namespace Assignment01
             try
             {
                 Console.WriteLine("\n");
+                Console.Write("\n[");
                 for (int i = 0; i < words.Length; i++ )
                 {   //Using two loops to concatenate a word with every other word.
                     for (int j = 0; j < words.Length; j++)
@@ -159,6 +160,7 @@ namespace Assignment01
                         else continue;
                     }
                 }
+                Console.Write("]");
             }
             catch
             {
