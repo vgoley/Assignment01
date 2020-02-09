@@ -182,18 +182,29 @@ namespace Assignment01
                 {
                     int[] moves = new int[100]; //array to store the moves of each player.
                     int firstchance = (n4 % 4); //player is smart so will pick such that multiple of 4 is left.
-                    moves[0] = firstchance;
+                    moves[0] = firstchance; //Storing the stones picked by first player.
                     Console.Write("[" + moves[0]);
                     n4 -= firstchance; //Remaining stones.
+                    int totalmoves = 1; //Totalmoves till now are 1.
                     int i;
-                    if(n4 > 0)
+                    if (n4 > 0)
                     { 
                         for (i = 1; n4 > 3; i++)
-                        {   //Each person will pick three stones 
+                        {
+                            //Each person will pick three stones 
                             moves[i] = 3;
                             n4 -= 3;
+                            totalmoves += 1;
                         }
-                        moves[i] = n4;  
+                        //For the first person to pick the stone in the end total moves will be an odd number.
+                        if (totalmoves % 2 == 0) 
+                            moves[i] = n4;
+                        else
+                        {
+                            moves[i] = 1;
+                            i++;
+                            moves[i] = n4 - 1;
+                        }
                         for (int k = 1; k <= i; k++)
                         {   //Print the moves of each player.
                             Console.Write("," + moves[k]);
