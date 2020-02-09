@@ -132,9 +132,10 @@ namespace Assignment01
         {
             try
             {
-                Console.WriteLine("\n");
-                Console.Write("\n[");
-                for (int i = 0; i < words.Length; i++ )
+                int[] firstword = new int[100]; //array to store position of first word.
+                int[] secword = new int[100]; //array to store the position of second word.
+                int w = 0; //Store the count of two arrays.
+                for (int i = 0; i < words.Length; i++)
                 {   //Using two loops to concatenate a word with every other word.
                     for (int j = 0; j < words.Length; j++)
                     {
@@ -143,22 +144,32 @@ namespace Assignment01
                             string temp = " ";
                             temp = words[i] + words[j];
                             int palin = 1;
-                            for (int k = 0; k <= temp.Length / 2; k++) 
+                            for (int k = 0; k <= temp.Length / 2; k++)
                             {
                                 if (temp[k] != temp[temp.Length - k - 1])
                                 //Comparing letters at same position, one from the beginning and other from end.
                                 {
-                                    palin = 0; 
+                                    palin = 0;
                                     break; //When mismatch is found, go out of the loop.
                                 }
                             }
                             if (palin == 1) //Means no mismatch found, its a palindrome.
                             {
-                                Console.Write("[" + i + "," + j + "]");
+                                firstword[w] = i;
+                                secword[w] = j;
+                                w++;
                             }
                         }
                         else continue;
                     }
+                }
+                //Print the output
+                Console.Write("\n\n[");
+                for (int k = 0; k < w; k++)
+                {
+                    Console.Write("[" + firstword[k] + "," + secword[k] + "]");
+                    if (k + 1 != w) //Print comma except for the end
+                        Console.Write(",");
                 }
                 Console.Write("]");
             }
@@ -169,8 +180,8 @@ namespace Assignment01
             }
         }
 
-        //Question6:
-        public static void Stones(int n4)
+//Question6:
+public static void Stones(int n4)
         {
             try
             {
